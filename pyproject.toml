@@ -1,0 +1,20 @@
+[project]
+name = "todo-app"
+version = "0.1.0"
+description = "The Evolution of Todo - Phase I: In-Memory Python Console Todo App"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+todo-app = "todo_app.main:main"
+
+[dependency-groups]
+dev = []
