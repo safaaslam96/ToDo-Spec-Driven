@@ -41,9 +41,19 @@ wheels/
 .DS_Store
 Thumbs.db
 
+# Node.js / Frontend
+node_modules/
+.next/
+out/
+frontend/.env.local
+
+# Backend
+backend/.env
+
 # Claude specific
 .claude/
 .specify/
 
 # UV
 uv.lock
+backend/uv.lock
