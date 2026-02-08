@@ -1,12 +1,22 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Enable static optimization
-  output: 'standalone',
-
-  // Image optimization
+  // Image optimization with modern remotePatterns (replaces deprecated domains)
   images: {
-    domains: ['vercel.app', 'huggingface.co'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.vercel.app',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.huggingface.co',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.hf.space',
+      },
+    ],
   },
 
   // Rewrites for API proxy (only in development)
