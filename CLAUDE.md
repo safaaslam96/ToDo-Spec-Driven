@@ -1,6 +1,36 @@
 # Claude Code Rules
 
-This file is generated during init for the selected agent.
+**⚠️ IMPORTANT**: This file is a shim. For complete agent instructions, see:
+- **Main Instructions**: `@AGENTS.md` (comprehensive agent system)
+- **Detailed Guidelines**: `@agents/CLAUDE.md` (workflow and commands)
+- **Constitution**: `@.specify/memory/constitution.md` (v2.0.0, AUTHORITATIVE)
+
+---
+
+## Quick Start for AI Agents
+
+### Before Every Session
+1. **Read constitution**: `@.specify/memory/constitution.md` (project principles)
+2. **Check AGENTS.md**: `@AGENTS.md` (comprehensive instructions)
+3. **Load main instructions**: `@agents/CLAUDE.md` (workflow details)
+4. **Review specialist skills**: `@agents/skills/<domain>.md` as needed
+
+### Workflow
+```
+Spec → Plan → Tasks → Implement → Test → Document → Commit
+```
+
+### Key Commands
+- `/sp.specify` — Create specification
+- `/sp.plan` — Generate implementation plan
+- `/sp.tasks` — Break into granular tasks
+- `/sp.implement` — Execute implementation
+- `/sp.git.commit_pr` — Commit and create PR
+- `/sp.phr` — Create Prompt History Record
+
+---
+
+## Original Claude Code Rules
 
 You are an expert AI assistant specializing in Spec-Driven Development (SDD). Your primary goal is to work with the architext to build products.
 
@@ -196,43 +226,124 @@ If ALL true, suggest:
 
 Wait for consent; never auto-create ADRs. Group related decisions (stacks, authentication, deployment) into one ADR when appropriate.
 
+## Monorepo Structure & Navigation
+
+```
+/                                 # Root: orchestration, specs, history
+├── .specify/
+│   ├── memory/constitution.md    # Project constitution (v2.0.0, AUTHORITATIVE)
+│   ├── config.yaml               # Phase grouping and project config
+│   └── templates/                # SDD templates (spec, plan, tasks, PHR, ADR)
+├── src/todo_app/                 # Phase 1: Console App (FROZEN — do not modify)
+├── backend/                      # Phase 2+: FastAPI backend
+│   ├── app/main.py               # FastAPI application entry point
+│   ├── app/api/routes/tasks.py   # Task CRUD endpoints (user-isolated)
+│   ├── app/auth/jwt.py           # JWT Bearer verification
+│   ├── app/models/task.py        # SQLModel Task table + schemas
+│   ├── app/database/connection.py # Async Neon PostgreSQL connection
+│   └── CLAUDE.md                 # Backend-specific guidelines
+├── frontend/                     # Phase 2+: Next.js frontend
+│   ├── app/                      # App Router pages (layout, page, auth, dashboard)
+│   ├── components/tasks/         # TaskItem, TaskForm, TaskList components
+│   ├── lib/api-client.ts         # API client with JWT token attachment
+│   ├── types/task.ts             # TypeScript interfaces
+│   └── CLAUDE.md                 # Frontend-specific guidelines
+├── specs/                        # All specifications
+│   ├── overview.md               # Project overview and phase roadmap
+│   ├── architecture.md           # System architecture diagram
+│   ├── features/task-crud.md     # Task CRUD feature spec
+│   ├── features/authentication.md # Auth feature spec
+│   ├── api/rest-endpoints.md     # REST API contract
+│   ├── database/schema.md        # Database schema spec
+│   ├── ui/pages.md               # Page structure spec
+│   └── ui/components.md          # Component spec
+├── specs_history/                # Phase 1 archived specs
+├── history/
+│   ├── prompts/                  # PHRs (constitution, feature, general)
+│   ├── adr/                      # Architecture Decision Records
+│   └── current-state.md          # Project state report
+├── docker-compose.yml            # Local dev: frontend + backend
+├── sp.constitution.md            # Phase 1 constitution archive (v1.0)
+└── CLAUDE.md                     # This file (root guidelines)
+```
+
+### Phase Grouping (5 Phases in 2 Parts)
+
+**Part A: Web Application (Phases 1–3)**
+| Phase | Status | Directory | Description |
+|-------|--------|-----------|-------------|
+| 1 — Console App | **Complete** | `src/todo_app/` | In-memory Python CLI, 5 features |
+| 2 — Full-Stack Web | **In Progress** | `backend/` + `frontend/` | FastAPI + Next.js + Neon + Auth |
+| 3 — Enhanced Features | Planned | `backend/` + `frontend/` | Filtering, sorting, search, tags |
+
+**Part B: Cloud Deployment (Phases 4–5)**
+| Phase | Status | Description |
+|-------|--------|-------------|
+| 4 — Containerization | Planned | Docker, docker-compose, CI/CD |
+| 5 — Kubernetes & Events | Planned | K8s orchestration, event-driven, AI chatbot |
+
+### Quick Start (Phase 2 Development)
+
+**Backend:**
+```bash
+cd backend && uv sync && cp .env.example .env
+uv run uvicorn app.main:app --reload --port 8000
+```
+
+**Frontend:**
+```bash
+cd frontend && npm install && cp .env.example .env.local
+npm run dev   # http://localhost:3000
+```
+
+**Both (Docker):**
+```bash
+docker-compose up
+```
+
 ## Basic Project Structure
 
-- `.specify/memory/constitution.md` — Project principles
-- `specs/<feature>/spec.md` — Feature requirements
-- `specs/<feature>/plan.md` — Architecture decisions
-- `specs/<feature>/tasks.md` — Testable tasks with cases
+- `.specify/memory/constitution.md` — Project principles (v2.0.0)
+- `.specify/config.yaml` — Phase grouping and project config
+- `specs/` — All specifications (features, api, database, ui)
 - `history/prompts/` — Prompt History Records
 - `history/adr/` — Architecture Decision Records
-- `.specify/` — SpecKit Plus templates and scripts
+- `.specify/templates/` — SDD templates
 
 ## Code Standards
-See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+### Backend (Python)
+- FastAPI with async/await everywhere
+- SQLModel for database models + Pydantic for request/response schemas
+- JWT verification via `get_current_user_id()` dependency on all protected routes
+- All database queries filtered by user_id (user isolation)
+- See `backend/CLAUDE.md` for full backend guidelines
+
+### Frontend (TypeScript)
+- Next.js 16+ App Router; Server Components by default
+- Tailwind CSS v4 for styling; no custom CSS
+- TypeScript strict mode; no `any` types
+- API calls through `lib/api-client.ts` only (auto JWT attachment)
+- See `frontend/CLAUDE.md` for full frontend guidelines
+
+### Shared
+- BETTER_AUTH_SECRET must match between backend and frontend
+- Never hardcode secrets; use `.env` files
+- See `.specify/memory/constitution.md` for overarching principles
 
 ## Project Documentation: The Evolution of Todo
 
-This section documents the specific prompts, decisions, and development process for "The Evolution of Todo" project.
+### Phase 1 (Complete)
+- Constitution v1.0: In-memory Python console todo, AI-only implementation
+- Spec: 5 features (Add, List, Update, Delete, Toggle) with acceptance criteria
+- Clarifications: Menu-driven UI, optional update fields, sequential IDs, toggle command
+- Plan: 12 tasks, sequential dependencies
+- Implementation: 12 source files in `src/todo_app/`
+- Archived: `specs_history/phase1_*.md`
 
-### Project Constitution
-- Created project constitution defining core principles for the todo application development
-- Established Phase I focus: in-memory Python console todo application
-- Defined technology stack: Python 3.13+, UV for package management
-- Specified constraints: no external dependencies for Phase I
-
-### Specification Development
-- Created Phase I Basic Features specification (v1)
-- Defined five core features: Add, List, Update, Delete, Mark Complete/Incomplete
-- Included detailed functional requirements, acceptance criteria, and edge cases
-- Added non-functional requirements and evolution notes for future phases
-
-### Clarifications Made
-- **Console Interface Style**: Confirmed menu-driven interface with numbered options
-- **Update Feature**: Confirmed optional fields — user can update title only, description only, or both
-- **Task ID Generation**: Confirmed sequential starting from 1, never reused in session, reset on restart (in-memory only)
-- **Error Handling**: Confirmed specific messages like "Task with ID X not found" (no full ID listing)
-- **Mark Complete/Incomplete**: Confirmed single toggle command functionality
-
-### Development Planning
-- Created detailed development plan with 12 granular tasks for AI implementation
-- Defined dependencies, effort estimates, and testing strategy
-- Aligned implementation approach with constitution and clarified requirements
+### Phase 2 (In Progress)
+- Constitution v2.0.0: Full-stack web app, multi-user, JWT auth, Neon PostgreSQL
+- Specs: Task CRUD, REST API, Authentication, Database Schema, UI Pages, UI Components
+- Architecture: FastAPI backend + Next.js frontend + Neon DB
+- Monorepo: `backend/` (13 files) + `frontend/` (14 files) scaffolded
+- Next steps: `/sp.plan` then `/sp.tasks` then `/sp.implement`
