@@ -18,16 +18,16 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseClasses =
-    "inline-flex items-center justify-center rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px]";
+    "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] hover:scale-105 active:scale-95";
 
   const variantClasses = {
     primary:
-      "bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 active:bg-blue-800 px-6 py-3",
+      "bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:shadow-lg focus:ring-blue-500 px-6 py-3 dark:from-blue-500 dark:to-blue-600",
     secondary:
-      "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 focus:ring-gray-500 active:bg-gray-100 px-6 py-3",
+      "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 focus:ring-gray-500 px-6 py-3 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:bg-gray-700",
     danger:
-      "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 active:bg-red-800 px-6 py-3",
-    icon: "bg-transparent text-gray-600 hover:bg-gray-100 focus:ring-gray-500 active:bg-gray-200 p-2 rounded-full min-h-[44px] min-w-[44px]",
+      "bg-gradient-to-r from-red-600 to-red-700 text-white hover:shadow-lg focus:ring-red-500 px-6 py-3 dark:from-red-500 dark:to-red-600",
+    icon: "bg-transparent text-gray-600 hover:bg-gray-100 focus:ring-gray-500 p-2 rounded-full min-h-[44px] min-w-[44px] dark:text-gray-400 dark:hover:bg-gray-800",
   };
 
   const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${className}`;

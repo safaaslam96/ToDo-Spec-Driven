@@ -19,7 +19,7 @@ export function TaskItem({ task, onToggleComplete, onEdit, onDelete }: TaskItemP
 
   return (
     <div
-      className={`rounded-lg border bg-white p-4 shadow-sm transition-all hover:shadow-md ${
+      className={`rounded-xl border bg-white p-6 shadow-md transition-all hover-lift dark:border-gray-700 dark:bg-gray-800 ${
         task.completed ? "opacity-60" : ""
       }`}
     >
@@ -28,7 +28,7 @@ export function TaskItem({ task, onToggleComplete, onEdit, onDelete }: TaskItemP
         <div className="flex flex-1 gap-3">
           <button
             onClick={() => onToggleComplete(task.id)}
-            className="mt-1 h-5 w-5 flex-shrink-0 rounded border-2 border-gray-300 transition-colors hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="mt-1 h-5 w-5 flex-shrink-0 rounded border-2 border-gray-300 transition-all hover:scale-110 hover:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:border-gray-600 dark:hover:border-blue-400"
             aria-label={task.completed ? "Mark as incomplete" : "Mark as complete"}
           >
             {task.completed && (
@@ -48,14 +48,14 @@ export function TaskItem({ task, onToggleComplete, onEdit, onDelete }: TaskItemP
 
           <div className="flex-1">
             <h3
-              className={`text-lg font-medium text-gray-900 ${
+              className={`text-lg font-medium leading-relaxed text-gray-900 dark:text-gray-100 ${
                 task.completed ? "line-through" : ""
               }`}
             >
               {task.title}
             </h3>
             {task.description && (
-              <p className="mt-1 text-sm text-gray-600">{task.description}</p>
+              <p className="mt-1 text-sm leading-relaxed text-gray-600 dark:text-gray-400">{task.description}</p>
             )}
             <div className="mt-2 flex items-center gap-2">
               <Badge variant={priorityVariant[task.priority]}>

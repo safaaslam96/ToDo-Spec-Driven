@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 
 from app.config import settings
 from app.database.connection import create_db_and_tables
@@ -25,14 +26,24 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS middleware
+# CORS middleware (must be added before other middleware)
+allowed_origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+if hasattr(settings, 'frontend_url') and settings.frontend_url:
+    allowed_origins.append(settings.frontend_url)
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.frontend_url],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# GZip compression middleware (for performance)
+app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 # Routes
 app.include_router(health_router, prefix="/api", tags=["health"])

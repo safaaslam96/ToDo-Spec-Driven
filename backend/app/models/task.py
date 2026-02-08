@@ -19,6 +19,10 @@ class Task(TaskBase, table=True):
     """Task database table model."""
 
     __tablename__ = "tasks"
+    __table_args__ = (
+        # Composite index for faster filtering by user and completion status
+        {"indexes": [{"name": "idx_user_completed", "columns": ["user_id", "completed"]}]},
+    )
 
     id: Optional[int] = Field(default=None, primary_key=True)
     user_id: str = Field(index=True)
