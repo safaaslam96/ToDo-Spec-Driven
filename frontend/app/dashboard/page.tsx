@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Button, EmptyState, ErrorState, Spinner } from "@/components/ui";
 import { DarkModeToggle } from "@/components/ui/DarkModeToggle";
 import { SkeletonLoader } from "@/components/ui/SkeletonLoader";
@@ -90,6 +91,7 @@ export default function DashboardPage() {
 
   const handleSignOut = () => {
     localStorage.removeItem("auth_token");
+    localStorage.removeItem("user_id");
     router.push("/");
   };
 
@@ -124,6 +126,14 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">My Tasks</h1>
             <div className="flex items-center gap-2">
+              <Link href="/chat">
+                <Button variant="secondary">
+                  <svg className="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                  </svg>
+                  AI Chat
+                </Button>
+              </Link>
               <DarkModeToggle />
               <Button variant="secondary" onClick={handleSignOut}>
                 Sign Out

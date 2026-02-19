@@ -80,6 +80,26 @@ export default function HomePage() {
                 />
               </svg>
             </Link>
+
+            <Link
+              href="/chat"
+              className="btn-pill group inline-flex min-h-[56px] items-center justify-center gap-3 border-2 border-purple-300 bg-gradient-to-r from-purple-50 to-indigo-50 px-10 text-lg font-semibold text-purple-700 backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-purple-400 hover:from-purple-100 hover:to-indigo-100 active:scale-95 dark:border-purple-700 dark:from-purple-900/30 dark:to-indigo-900/30 dark:text-purple-300 dark:hover:border-purple-500 dark:hover:from-purple-900/50 dark:hover:to-indigo-900/50"
+            >
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                />
+              </svg>
+              <span>AI Chat Assistant</span>
+            </Link>
           </div>
         </div>
 
@@ -137,21 +157,21 @@ export default function HomePage() {
 
             {/* Feature 3 */}
             <div className="glass-card hover-lift animate-slide-up group rounded-3xl p-8 stagger-3">
-              <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-600 text-white shadow-lg shadow-blue-500/30">
+              <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-lg shadow-purple-500/30">
                 <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
                   />
                 </svg>
               </div>
               <h3 className="mb-3 text-xl font-semibold text-slate-900 dark:text-slate-100">
-                Beautiful Dark Mode
+                AI Chatbot Assistant
               </h3>
               <p className="leading-relaxed text-slate-600 dark:text-slate-400">
-                Sophisticated dark mode with smooth transitions and system preference detection
+                Bilingual AI assistant supporting English, Urdu, and Hinglish for natural task management
               </p>
             </div>
           </div>

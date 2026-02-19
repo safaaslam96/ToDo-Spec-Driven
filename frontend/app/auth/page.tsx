@@ -27,6 +27,7 @@ export default function AuthPage() {
       });
 
     localStorage.setItem("auth_token", testToken);
+    localStorage.setItem("user_id", userId);
     router.push("/dashboard");
   };
 

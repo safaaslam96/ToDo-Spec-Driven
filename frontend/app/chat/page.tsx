@@ -7,6 +7,7 @@
  */
 
 import { useState, useEffect, useRef, FormEvent } from "react";
+import Link from "next/link";
 import { sendChatMessage, getUserId, type ChatMessage } from "@/lib/chat-api";
 
 export default function ChatPage() {
@@ -66,10 +67,22 @@ export default function ChatPage() {
     <div className="flex flex-col h-screen bg-gray-50">
       {/* Header */}
       <header className="bg-blue-600 text-white px-4 py-3 shadow-md flex-shrink-0">
-        <h1 className="text-lg font-semibold">Todo AI Assistant</h1>
-        <p className="text-blue-200 text-xs mt-0.5">
-          Chat in English, Urdu, or Hinglish · Bilingual support
-        </p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-lg font-semibold">Todo AI Assistant</h1>
+            <p className="text-blue-200 text-xs mt-0.5">
+              Chat in English, Urdu, or Hinglish · Bilingual support
+            </p>
+          </div>
+          <Link href="/dashboard">
+            <button className="flex items-center gap-2 rounded-lg bg-blue-700 px-3 py-2 text-sm font-medium hover:bg-blue-800 transition-colors">
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              Dashboard
+            </button>
+          </Link>
+        </div>
       </header>
 
       {/* Message list */}
