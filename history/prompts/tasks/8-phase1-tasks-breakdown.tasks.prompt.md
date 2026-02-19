@@ -10,14 +10,9 @@ branch: main
 user: Administrator
 command: sp.tasks
 labels: [tasks, todo-app, phase1]
-links:
-  spec: specs_history/phase1_basic_features_v1.spec.md
-  plan: specs_history/phase1_dev_plan_v1.plan.md
-  tasks: specs_history/phase1_tasks_v1.tasks.md
-  constitution: sp.constitution.md
-files:
- - specs_history/phase1_tasks_v1.tasks.md
-tests:
+links: {spec: "specs_history/phase1_basic_features_v1.spec.md", ticket: null, adr: null, pr: null}
+files: ["specs_history/phase1_tasks_v1.tasks.md"]
+tests: []
 ---
 
 ## Prompt

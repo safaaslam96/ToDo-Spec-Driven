@@ -10,18 +10,9 @@ branch: main
 user: Administrator
 command: project-setup
 labels: [setup, python, uv, todo-app]
-links:
-  constitution: sp.constitution.md
-  spec: specs_history/phase1_basic_features_v1.spec.md
-  plan: specs_history/phase1_dev_plan_v1.plan.md
-  documentation: CLAUDE.md
-files:
- - pyproject.toml
- - README.md
- - .env
- - .gitignore
- - src/todo_app/__init__.py
-tests:
+links: {spec: "specs_history/phase1_basic_features_v1.spec.md", ticket: null, adr: null, pr: null}
+files: ["pyproject.toml", "README.md", ".env", ".gitignore", "src/todo_app/__init__.py"]
+tests: []
 ---
 
 ## Prompt

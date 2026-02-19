@@ -10,14 +10,9 @@ branch: main
 user: Administrator
 command: sp.constitution
 labels: [specification, todo-app, phase1]
-links:
-  spec: specs_history/phase1_basic_features_v1.spec.md
-  ticket: null
-  adr: null
-  pr: null
-files:
- - specs_history/phase1_basic_features_v1.spec.md
-tests:
+links: {spec: "specs_history/phase1_basic_features_v1.spec.md", ticket: null, adr: null, pr: null}
+files: ["specs_history/phase1_basic_features_v1.spec.md"]
+tests: []
 ---
 
 ## Prompt

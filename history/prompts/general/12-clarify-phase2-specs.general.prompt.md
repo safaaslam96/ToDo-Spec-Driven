@@ -10,16 +10,9 @@ branch: 1-rest-api-spec
 user: safaaslam96
 command: /sp.clarify
 labels: ["clarification", "phase2", "specs", "api", "task-crud"]
-links:
-  spec: specs/features/task-crud.md
-  ticket: null
-  adr: null
-  pr: null
-files:
-  - specs/features/task-crud.md
-  - specs/api/rest-endpoints.md
-tests:
-  - none
+links: {spec: "specs/features/task-crud.md", ticket: null, adr: null, pr: null}
+files: ["specs/features/task-crud.md", "specs/api/rest-endpoints.md"]
+tests: ["none"]
 ---
 
 ## Prompt

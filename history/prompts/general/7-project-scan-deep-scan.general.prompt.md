@@ -10,13 +10,9 @@ branch: main
 user: Administrator
 command: project-scan
 labels: [scan, project-structure, todo-app]
-links:
-  constitution: sp.constitution.md
-  spec: specs_history/phase1_basic_features_v1.spec.md
-  plan: specs_history/phase1_dev_plan_v1.plan.md
-files:
- - src/todo_app/main.py
-tests:
+links: {spec: "specs_history/phase1_basic_features_v1.spec.md", ticket: null, adr: null, pr: null}
+files: ["src/todo_app/main.py"]
+tests: []
 ---
 
 ## Prompt

@@ -10,15 +10,9 @@ branch: 1-rest-api-spec
 user: safaaslam96
 command: /sp.tasks
 labels: ["tasks", "phase2", "breakdown", "implementation", "full-stack"]
-links:
-  spec: specs/features/task-crud.md
-  ticket: null
-  adr: null
-  pr: null
-files:
-  - specs_history/phase2_tasks_v1.tasks.md
-tests:
-  - none
+links: {spec: "specs/features/task-crud.md", ticket: null, adr: null, pr: null}
+files: ["specs_history/phase2_tasks_v1.tasks.md"]
+tests: ["none"]
 ---
 
 ## Prompt

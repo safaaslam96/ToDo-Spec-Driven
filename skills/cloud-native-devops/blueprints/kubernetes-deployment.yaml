@@ -1,0 +1,514 @@
+# Kubernetes Deployment Blueprint
+# REUSABLE: Works for ANY FastAPI + Next.js + PostgreSQL application
+# Just change: app names, image URLs, and environment variables
+
+---
+# Namespace (optional, but recommended for organization)
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: todo-app
+  labels:
+    app: todo-app
+    environment: production
+
+---
+# PostgreSQL Database Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: todo-app
+  labels:
+    app: postgres
+    tier: database
+spec:
+  replicas: 1  # Single instance (use StatefulSet for HA)
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+        tier: database
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:16-alpine  # Change version as needed
+        ports:
+        - containerPort: 5432
+          name: postgres
+        env:
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: app-config
+              key: database-name
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-secrets
+              key: username
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-secrets
+              key: password
+        volumeMounts:
+        - name: postgres-data
+          mountPath: /var/lib/postgresql/data
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          exec:
+            command: ["pg_isready", "-U", "postgres"]
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          exec:
+            command: ["pg_isready", "-U", "postgres"]
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumes:
+      - name: postgres-data
+        persistentVolumeClaim:
+          claimName: postgres-pvc
+
+---
+# PostgreSQL Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: todo-app
+  labels:
+    app: postgres
+spec:
+  type: ClusterIP
+  ports:
+  - port: 5432
+    targetPort: 5432
+    name: postgres
+  selector:
+    app: postgres
+
+---
+# PostgreSQL PersistentVolumeClaim
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+  namespace: todo-app
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi  # Adjust size as needed
+  storageClassName: standard  # Change based on cloud provider
+
+---
+# Backend (FastAPI) Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: todo-app
+  labels:
+    app: backend
+    tier: api
+spec:
+  replicas: 3  # Adjust for production load
+  selector:
+    matchLabels:
+      app: backend
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: backend
+        tier: api
+    spec:
+      containers:
+      - name: backend
+        image: your-registry/todo-backend:latest  # ⬅️ CHANGE THIS
+        ports:
+        - containerPort: 8000
+          name: http
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: db-secrets
+              key: connection-string
+        - name: BETTER_AUTH_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: auth-secrets
+              key: jwt-secret
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: api-keys
+              key: openai-key
+        - name: ENVIRONMENT
+          value: "production"
+        - name: LOG_LEVEL
+          value: "info"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /api/health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/sh", "-c", "sleep 15"]  # Graceful shutdown
+
+---
+# Backend Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: todo-app
+  labels:
+    app: backend
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8000
+    targetPort: 8000
+    name: http
+  selector:
+    app: backend
+
+---
+# Frontend (Next.js) Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: todo-app
+  labels:
+    app: frontend
+    tier: web
+spec:
+  replicas: 2  # Adjust for production load
+  selector:
+    matchLabels:
+      app: frontend
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: frontend
+        tier: web
+    spec:
+      containers:
+      - name: frontend
+        image: your-registry/todo-frontend:latest  # ⬅️ CHANGE THIS
+        ports:
+        - containerPort: 3000
+          name: http
+        env:
+        - name: NEXT_PUBLIC_API_URL
+          value: "https://api.example.com"  # ⬅️ CHANGE THIS
+        - name: NODE_ENV
+          value: "production"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+---
+# Frontend Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: todo-app
+  labels:
+    app: frontend
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+    name: http
+  selector:
+    app: frontend
+
+---
+# Ingress (Nginx Ingress Controller)
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+  namespace: todo-app
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"  # For SSL
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/rate-limit: "100"  # Requests per second
+spec:
+  tls:
+  - hosts:
+    - example.com  # ⬅️ CHANGE THIS
+    - api.example.com  # ⬅️ CHANGE THIS
+    secretName: tls-secret
+  rules:
+  - host: example.com  # ⬅️ CHANGE THIS
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend
+            port:
+              number: 3000
+  - host: api.example.com  # ⬅️ CHANGE THIS
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: backend
+            port:
+              number: 8000
+
+---
+# ConfigMap (Non-sensitive configuration)
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: todo-app
+data:
+  database-name: "todo_db"
+  log-level: "info"
+  feature-flags: |
+    {
+      "enable_voice_commands": true,
+      "enable_urdu_chatbot": true,
+      "enable_ai_suggestions": true
+    }
+
+---
+# Secrets (Sensitive data - use external secrets management in production)
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-secrets
+  namespace: todo-app
+type: Opaque
+stringData:
+  username: "postgres"
+  password: "CHANGE_ME"  # ⬅️ CHANGE THIS (use sealed-secrets or external-secrets)
+  connection-string: "postgresql://postgres:CHANGE_ME@postgres:5432/todo_db"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: auth-secrets
+  namespace: todo-app
+type: Opaque
+stringData:
+  jwt-secret: "CHANGE_ME_SUPER_SECRET_KEY"  # ⬅️ CHANGE THIS
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: api-keys
+  namespace: todo-app
+type: Opaque
+stringData:
+  openai-key: "sk-CHANGE_ME"  # ⬅️ CHANGE THIS
+
+---
+# Horizontal Pod Autoscaler (Backend)
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: backend-hpa
+  namespace: todo-app
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: backend
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+
+---
+# Horizontal Pod Autoscaler (Frontend)
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: frontend-hpa
+  namespace: todo-app
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: frontend
+  minReplicas: 2
+  maxReplicas: 8
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+
+---
+# NetworkPolicy (Security: Restrict traffic between tiers)
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: backend-netpol
+  namespace: todo-app
+spec:
+  podSelector:
+    matchLabels:
+      app: backend
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: frontend
+    - namespaceSelector:
+        matchLabels:
+          name: ingress-nginx  # Allow ingress controller
+    ports:
+    - protocol: TCP
+      port: 8000
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          app: postgres
+    ports:
+    - protocol: TCP
+      port: 5432
+  - to:  # Allow external API calls (OpenAI, etc.)
+    - namespaceSelector: {}
+    ports:
+    - protocol: TCP
+      port: 443
+
+---
+# PodDisruptionBudget (Backend)
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: backend-pdb
+  namespace: todo-app
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app: backend
+
+---
+# PodDisruptionBudget (Frontend)
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: frontend-pdb
+  namespace: todo-app
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: frontend
+
+# USAGE:
+# 1. Replace placeholders:
+#    - your-registry/todo-backend:latest
+#    - your-registry/todo-frontend:latest
+#    - example.com, api.example.com
+#    - All CHANGE_ME secrets
+#
+# 2. Deploy:
+#    kubectl apply -f kubernetes-deployment.yaml
+#
+# 3. Check status:
+#    kubectl get all -n todo-app
+#
+# 4. View logs:
+#    kubectl logs -f deployment/backend -n todo-app
+#    kubectl logs -f deployment/frontend -n todo-app
+#
+# 5. Scale manually:
+#    kubectl scale deployment/backend --replicas=5 -n todo-app
+#
+# REUSABILITY:
+# This blueprint works for ANY FastAPI + Next.js + PostgreSQL stack!
+# Just update app names, images, and environment variables.

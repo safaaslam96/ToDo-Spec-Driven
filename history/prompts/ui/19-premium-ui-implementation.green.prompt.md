@@ -10,27 +10,9 @@ branch: main
 user: safaaslam96
 command: /sp.implement
 labels: ["ui", "premium-design", "dark-mode", "glassmorphism", "animations", "accessibility"]
-links:
-  spec: specs/ui/pages.md, specs/ui/components.md
-  ticket: null
-  adr: null
-  pr: null
-files:
-  - frontend/app/globals.css (modified)
-  - frontend/components/tasks/task-form.tsx (modified)
-  - frontend/components/tasks/task-item.tsx (modified)
-  - frontend/components/tasks/priority-badge.tsx (created)
-  - frontend/components/ui/progress-ring.tsx (created)
-  - frontend/components/ui/floating-action-button.tsx (created)
-  - frontend/components/ui/bottom-navigation.tsx (created)
-  - frontend/components/ui/modal.tsx (created)
-  - frontend/components/ui/empty-state.tsx (created)
-  - frontend/components/ui/skeleton.tsx (created)
-tests:
-  - Manual testing: dark mode toggle
-  - Manual testing: responsive breakpoints
-  - Manual testing: keyboard navigation
-  - Manual testing: animations and transitions
+links: {spec: "specs/ui/pages.md, specs/ui/components.md", ticket: null, adr: null, pr: null}
+files: ["frontend/app/globals.css (modified)", "frontend/components/tasks/task-form.tsx (modified)", "frontend/components/tasks/task-item.tsx (modified)", "frontend/components/tasks/priority-badge.tsx (created)", "frontend/components/ui/progress-ring.tsx (created)", "frontend/components/ui/floating-action-button.tsx (created)", "frontend/components/ui/bottom-navigation.tsx (created)", "frontend/components/ui/modal.tsx (created)", "frontend/components/ui/empty-state.tsx (created)", "frontend/components/ui/skeleton.tsx (created)"]
+tests: ["Manual testing: dark mode toggle", "Manual testing: responsive breakpoints", "Manual testing: keyboard navigation", "Manual testing: animations and transitions"]
 ---
 
 ## Prompt

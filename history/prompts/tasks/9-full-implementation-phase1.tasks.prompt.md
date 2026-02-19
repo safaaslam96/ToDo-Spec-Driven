@@ -10,24 +10,9 @@ branch: main
 user: Administrator
 command: sp.implementation
 labels: [implementation, todo-app, phase1]
-links:
-  spec: specs_history/phase1_basic_features_v1.spec.md
-  plan: specs_history/phase1_dev_plan_v1.plan.md
-  tasks: specs_history/phase1_tasks_v1.tasks.md
-  constitution: sp.constitution.md
-files:
- - src/todo_app/models.py
- - src/todo_app/storage.py
- - src/todo_app/ui.py
- - src/todo_app/utils.py
- - src/todo_app/features/add_task.py
- - src/todo_app/features/list_tasks.py
- - src/todo_app/features/update_task.py
- - src/todo_app/features/delete_task.py
- - src/todo_app/features/toggle_task.py
- - src/todo_app/app.py
- - src/todo_app/main.py
-tests:
+links: {spec: "specs_history/phase1_basic_features_v1.spec.md", ticket: null, adr: null, pr: null}
+files: ["src/todo_app/models.py", "src/todo_app/storage.py", "src/todo_app/ui.py", "src/todo_app/utils.py", "src/todo_app/features/add_task.py", "src/todo_app/features/list_tasks.py", "src/todo_app/features/update_task.py", "src/todo_app/features/delete_task.py", "src/todo_app/features/toggle_task.py", "src/todo_app/app.py", "src/todo_app/main.py"]
+tests: []
 ---
 
 ## Prompt

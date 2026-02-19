@@ -10,20 +10,9 @@ branch: 1-rest-api-spec
 user: safaaslam96
 command: /sp.plan
 labels: ["plan", "phase2", "architecture", "tasks", "skills"]
-links:
-  spec: specs/features/task-crud.md
-  ticket: null
-  adr: null
-  pr: null
-files:
-  - specs/main/plan.md
-  - skills/python-specialist/CLAUDE.md
-  - skills/frontend-architect/CLAUDE.md
-  - skills/qa-testing-specialist/CLAUDE.md
-  - skills/ai-mcp-integration/CLAUDE.md
-  - skills/cloud-native-devops/CLAUDE.md
-tests:
-  - none
+links: {spec: "specs/features/task-crud.md", ticket: null, adr: null, pr: null}
+files: ["specs/main/plan.md", "skills/python-specialist/CLAUDE.md", "skills/frontend-architect/CLAUDE.md", "skills/qa-testing-specialist/CLAUDE.md", "skills/ai-mcp-integration/CLAUDE.md", "skills/cloud-native-devops/CLAUDE.md"]
+tests: ["none"]
 ---
 
 ## Prompt

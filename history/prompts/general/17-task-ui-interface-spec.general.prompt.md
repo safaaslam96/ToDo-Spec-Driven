@@ -10,16 +10,9 @@ branch: 1-rest-api-spec
 user: safaaslam96
 command: /sp.specify
 labels: ["spec", "ui", "design", "responsive", "accessibility", "tailwind"]
-links:
-  spec: specs/ui/task-interface.md
-  ticket: null
-  adr: null
-  pr: null
-files:
-  - specs/ui/task-interface.md
-  - specs/ui/checklists/requirements.md
-tests:
-  - none
+links: {spec: "specs/ui/task-interface.md", ticket: null, adr: null, pr: null}
+files: ["specs/ui/task-interface.md", "specs/ui/checklists/requirements.md"]
+tests: ["none"]
 ---
 
 ## Prompt

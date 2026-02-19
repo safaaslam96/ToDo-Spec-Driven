@@ -10,17 +10,9 @@ branch: main
 user: Administrator
 command: sp.check
 labels: [documentation, update, constitution, todo-app]
-links:
-  spec: specs_history/phase1_basic_features_v1.spec.md
-  plan: specs_history/phase1_dev_plan_v1.plan.md
-  constitution: sp.constitution.md
-  documentation: CLAUDE.md
-files:
- - sp.constitution.md
- - specs_history/phase1_basic_features_v1.spec.md
- - specs_history/phase1_dev_plan_v1.plan.md
- - CLAUDE.md
-tests:
+links: {spec: "specs_history/phase1_basic_features_v1.spec.md", ticket: null, adr: null, pr: null}
+files: ["sp.constitution.md", "specs_history/phase1_basic_features_v1.spec.md", "specs_history/phase1_dev_plan_v1.plan.md", "CLAUDE.md"]
+tests: []
 ---
 
 ## Prompt

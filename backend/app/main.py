@@ -11,6 +11,7 @@ from app.database.connection import create_db_and_tables
 from app.api.routes.tasks import router as tasks_router
 from app.api.routes.health import router as health_router
 from app.api.routes.suggestions import router as suggestions_router
+from app.api.routes.chat import router as chat_router
 
 
 @asynccontextmanager
@@ -50,3 +51,4 @@ app.add_middleware(GZipMiddleware, minimum_size=1000)
 app.include_router(health_router, prefix="/api", tags=["health"])
 app.include_router(tasks_router, prefix="/api/tasks", tags=["tasks"])
 app.include_router(suggestions_router, tags=["suggestions"])
+app.include_router(chat_router, tags=["chatbot"])

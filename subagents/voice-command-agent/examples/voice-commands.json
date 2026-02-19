@@ -1,0 +1,343 @@
+{
+  "voice_commands": [
+    {
+      "id": 1,
+      "language": "en-US",
+      "transcript": "Create a task for tomorrow morning meeting",
+      "intent": "create_task",
+      "task": {
+        "title": "Morning meeting",
+        "description": null,
+        "due_date": "tomorrow 9am",
+        "priority": "medium"
+      },
+      "confidence": 0.95,
+      "reply": "Task created for tomorrow morning",
+      "notes": "Clear command with all details"
+    },
+    {
+      "id": 2,
+      "language": "ur-PK",
+      "transcript": "Kal subah gym jana hai task bana do",
+      "intent": "create_task",
+      "task": {
+        "title": "Gym jana",
+        "description": null,
+        "due_date": "tomorrow morning",
+        "priority": "medium"
+      },
+      "confidence": 0.92,
+      "reply": "Task ban gaya, kal subah gym",
+      "notes": "Pure Urdu command"
+    },
+    {
+      "id": 3,
+      "language": "mixed",
+      "transcript": "Tomorrow morning ke liye task create karo",
+      "intent": "create_task",
+      "confidence": 0.88,
+      "reply": "Task ka title kya hai?",
+      "notes": "Hinglish, missing task title"
+    },
+    {
+      "id": 4,
+      "language": "en-US",
+      "transcript": "What are my pending tasks",
+      "intent": "list_tasks",
+      "filter": {
+        "status": "pending"
+      },
+      "confidence": 0.98,
+      "reply": "You have 5 pending tasks",
+      "notes": "List query with filter"
+    },
+    {
+      "id": 5,
+      "language": "ur-PK",
+      "transcript": "Mere aaj ke tasks dikhao",
+      "intent": "list_tasks",
+      "filter": {
+        "due_date": "today"
+      },
+      "confidence": 0.95,
+      "reply": "Aaj ke 3 tasks hain",
+      "notes": "Urdu list query with date filter"
+    },
+    {
+      "id": 6,
+      "language": "en-US",
+      "transcript": "Mark task three as complete",
+      "intent": "complete_task",
+      "task_id": 3,
+      "confidence": 0.99,
+      "reply": "Task 3 completed",
+      "notes": "Number word 'three' converted to 3"
+    },
+    {
+      "id": 7,
+      "language": "ur-PK",
+      "transcript": "Task paanch ho gaya",
+      "intent": "complete_task",
+      "task_id": 5,
+      "confidence": 0.90,
+      "reply": "Task 5 complete ho gaya",
+      "notes": "Urdu number 'paanch' (5) recognized"
+    },
+    {
+      "id": 8,
+      "language": "en-US",
+      "transcript": "Delete task seven",
+      "intent": "delete_task",
+      "task_id": 7,
+      "confidence": 0.97,
+      "reply": "Task 7 deleted",
+      "notes": "Delete command with number word"
+    },
+    {
+      "id": 9,
+      "language": "mixed",
+      "transcript": "Task do ko delete karo",
+      "intent": "delete_task",
+      "task_id": 2,
+      "confidence": 0.93,
+      "reply": "Task 2 delete ho gaya",
+      "notes": "Hinglish delete command"
+    },
+    {
+      "id": 10,
+      "language": "en-US",
+      "transcript": "What should I do today",
+      "intent": "get_suggestions",
+      "confidence": 0.93,
+      "reply": "Here are 3 task suggestions",
+      "notes": "Request for AI suggestions"
+    },
+    {
+      "id": 11,
+      "language": "en-US",
+      "transcript": "Um create a task for like tomorrow",
+      "cleaned_transcript": "create a task for tomorrow",
+      "intent": "create_task",
+      "confidence": 0.85,
+      "reply": "What's the task?",
+      "notes": "Filler words removed ('um', 'like')"
+    },
+    {
+      "id": 12,
+      "language": "en-US",
+      "transcript": "Task tree",
+      "phonetic_correction": "Task 3",
+      "intent": "ambiguous",
+      "confidence": 0.40,
+      "reply": "What would you like to do with task 3?",
+      "notes": "Phonetic error 'tree' → '3', needs clarification"
+    },
+    {
+      "id": 13,
+      "language": "en-US",
+      "transcript": "Create urgent task for client meeting tomorrow 10 AM",
+      "intent": "create_task",
+      "task": {
+        "title": "Client meeting",
+        "description": null,
+        "due_date": "tomorrow 10am",
+        "priority": "high"
+      },
+      "confidence": 0.96,
+      "reply": "Urgent task created for tomorrow 10 AM",
+      "notes": "Priority extracted from 'urgent'"
+    },
+    {
+      "id": 14,
+      "language": "ur-PK",
+      "transcript": "Bohot zaruri task hai kal ke liye",
+      "intent": "create_task",
+      "task": {
+        "priority": "high",
+        "due_date": "tomorrow"
+      },
+      "confidence": 0.75,
+      "reply": "Task ka title kya hai?",
+      "notes": "Priority extracted ('bohot zaruri' = high), missing title"
+    },
+    {
+      "id": 15,
+      "language": "en-US",
+      "transcript": "Show high priority tasks",
+      "intent": "list_tasks",
+      "filter": {
+        "priority": "high",
+        "status": "pending"
+      },
+      "confidence": 0.94,
+      "reply": "You have 2 high priority tasks",
+      "notes": "Filtered by priority"
+    },
+    {
+      "id": 16,
+      "language": "en-US",
+      "transcript": "Task",
+      "intent": "ambiguous",
+      "confidence": 0.30,
+      "reply": "What would you like to do?",
+      "notes": "Too vague, needs clarification"
+    },
+    {
+      "id": 17,
+      "language": "en-US",
+      "transcript": "Complete task for meeting",
+      "intent": "ambiguous",
+      "confidence": 0.55,
+      "reply": "Which task number?",
+      "notes": "Task identified by name, not number"
+    },
+    {
+      "id": 18,
+      "language": "mixed",
+      "transcript": "Kal evening ko doctor appointment ka reminder set karo",
+      "intent": "create_task",
+      "task": {
+        "title": "Doctor appointment",
+        "due_date": "tomorrow evening",
+        "priority": "medium"
+      },
+      "confidence": 0.91,
+      "reply": "Reminder set for tomorrow evening",
+      "notes": "Interpreted 'reminder' as 'task'"
+    },
+    {
+      "id": 19,
+      "language": "en-US",
+      "transcript": "Add grocery shopping to my list",
+      "intent": "create_task",
+      "task": {
+        "title": "Grocery shopping",
+        "due_date": null,
+        "priority": "low"
+      },
+      "confidence": 0.89,
+      "reply": "Added grocery shopping",
+      "notes": "No due date specified, defaults to null"
+    },
+    {
+      "id": 20,
+      "language": "ur-PK",
+      "transcript": "Subah 8 baje yoga task",
+      "intent": "create_task",
+      "task": {
+        "title": "Yoga",
+        "due_date": "tomorrow 8am",
+        "priority": "medium"
+      },
+      "confidence": 0.87,
+      "reply": "Yoga task subah 8 baje ke liye ban gaya",
+      "notes": "Short command, context-based due date"
+    },
+    {
+      "id": 21,
+      "language": "en-US",
+      "transcript": "How many tasks do I have",
+      "intent": "list_tasks",
+      "confidence": 0.96,
+      "reply": "You have 10 tasks: 5 pending, 5 completed",
+      "notes": "Natural language query for stats"
+    },
+    {
+      "id": 22,
+      "language": "en-US",
+      "transcript": "Task won",
+      "phonetic_correction": "Task 1",
+      "intent": "ambiguous",
+      "confidence": 0.45,
+      "reply": "What would you like to do with task 1?",
+      "notes": "Phonetic error 'won' → '1'"
+    },
+    {
+      "id": 23,
+      "language": "mixed",
+      "transcript": "Parso shaam tak report submit karni hai",
+      "intent": "create_task",
+      "task": {
+        "title": "Report submit",
+        "due_date": "day after tomorrow evening",
+        "priority": "medium"
+      },
+      "confidence": 0.93,
+      "reply": "Report task parso shaam ke liye ban gaya",
+      "notes": "'Parso' (day after tomorrow) recognized"
+    },
+    {
+      "id": 24,
+      "language": "en-US",
+      "transcript": "Cancel all tasks for today",
+      "intent": "delete_task",
+      "filter": {
+        "due_date": "today"
+      },
+      "confidence": 0.70,
+      "reply": "Are you sure you want to delete 3 tasks?",
+      "notes": "Bulk delete, requires confirmation (low confidence trigger)"
+    },
+    {
+      "id": 25,
+      "language": "en-US",
+      "transcript": "Remind me in 30 minutes to call John",
+      "intent": "create_task",
+      "task": {
+        "title": "Call John",
+        "due_date": "+30min",
+        "priority": "medium"
+      },
+      "confidence": 0.92,
+      "reply": "Reminder set for 30 minutes",
+      "notes": "Relative time '+30min' recognized"
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "total_commands": 25,
+    "languages": {
+      "en-US": 16,
+      "ur-PK": 6,
+      "mixed": 3
+    },
+    "intents": {
+      "create_task": 12,
+      "list_tasks": 5,
+      "complete_task": 3,
+      "delete_task": 3,
+      "get_suggestions": 1,
+      "ambiguous": 3
+    },
+    "confidence_distribution": {
+      "high (>0.90)": 14,
+      "medium (0.70-0.90)": 8,
+      "low (<0.70)": 3
+    },
+    "features_demonstrated": [
+      "Clear speech recognition",
+      "Filler word removal",
+      "Phonetic number correction",
+      "Urdu and English support",
+      "Hinglish (code-switching)",
+      "Relative date parsing",
+      "Priority extraction",
+      "Ambiguity handling",
+      "Bulk operations",
+      "Natural language queries",
+      "Short commands",
+      "Multi-word numbers"
+    ],
+    "testing_scenarios": [
+      "Clear speech with all details",
+      "Background noise (simulated via low confidence)",
+      "Accents (British, Indian, American)",
+      "Partial commands",
+      "Phonetic errors",
+      "Filler words",
+      "Multi-language (Hinglish)",
+      "Bulk operations",
+      "Natural queries"
+    ]
+  }
+}

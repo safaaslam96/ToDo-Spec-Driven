@@ -10,22 +10,9 @@ branch: 1-rest-api-spec
 user: safaaslam96
 command: /sp.setup installation
 labels: ["installation", "setup", "documentation", "automation"]
-links:
-  spec: null
-  ticket: null
-  adr: null
-  pr: null
-files:
-  - INSTALLATION.md
-  - setup.sh
-  - setup.ps1
-  - verify-tools.sh
-  - .env.example
-  - backend/.env.example
-  - frontend/.env.example
-  - README.md
-tests:
-  - none
+links: {spec: null, ticket: null, adr: null, pr: null}
+files: ["INSTALLATION.md", "setup.sh", "setup.ps1", "verify-tools.sh", ".env.example", "backend/.env.example", "frontend/.env.example", "README.md"]
+tests: ["none"]
 ---
 
 ## Prompt

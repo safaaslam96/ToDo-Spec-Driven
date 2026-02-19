@@ -10,15 +10,9 @@ branch: 1-rest-api-spec
 user: safaaslam96
 command: /sp.review project
 labels: ["review", "project-state", "audit"]
-links:
-  spec: null
-  ticket: null
-  adr: null
-  pr: null
-files:
-  - history/current-state.md
-tests:
-  - none
+links: {spec: null, ticket: null, adr: null, pr: null}
+files: ["history/current-state.md"]
+tests: ["none"]
 ---
 
 ## Prompt

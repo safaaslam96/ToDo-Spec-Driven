@@ -1,0 +1,431 @@
+{
+  "conversations": [
+    {
+      "id": 1,
+      "title": "Create Task - Pure Urdu",
+      "language": "ur-PK",
+      "turns": [
+        {
+          "role": "user",
+          "message": "Kal subah 9 baje client meeting ka task bana do priority high"
+        },
+        {
+          "role": "assistant",
+          "intent": "create_task",
+          "task": {
+            "title": "Client meeting",
+            "description": null,
+            "due_date": "2024-02-10T09:00:00Z",
+            "priority": "high"
+          },
+          "message": "Ji, client meeting ka task kal subah 9 baje ke liye ban gaya! Priority high set hai."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "List Tasks - Hinglish",
+      "language": "mixed",
+      "turns": [
+        {
+          "role": "user",
+          "message": "Mere pending tasks kitne hain?"
+        },
+        {
+          "role": "assistant",
+          "intent": "list_tasks",
+          "filter": {
+            "status": "pending"
+          },
+          "message": "Aap ke 5 pending tasks hain aur 12 complete ho chuke hain. Kya dekhna chahte hain?"
+        },
+        {
+          "role": "user",
+          "message": "Sab dikhao"
+        },
+        {
+          "role": "assistant",
+          "intent": "list_tasks",
+          "tasks": [
+            {
+              "id": 1,
+              "title": "Client meeting",
+              "due_date": "2024-02-10T09:00:00Z",
+              "priority": "high"
+            },
+            {
+              "id": 2,
+              "title": "Report submit",
+              "due_date": "2024-02-11T17:00:00Z",
+              "priority": "medium"
+            }
+          ],
+          "message": "Yeh hain aap ke pending tasks:\n1. Client meeting - Kal subah (High)\n2. Report submit - Parso shaam (Medium)"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Complete Task - Pure English",
+      "language": "en-US",
+      "turns": [
+        {
+          "role": "user",
+          "message": "Mark task 3 as complete"
+        },
+        {
+          "role": "assistant",
+          "intent": "complete_task",
+          "task_id": 3,
+          "message": "Done! Task 3 marked as complete."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Multi-turn Task Creation - Urdu",
+      "language": "ur-PK",
+      "turns": [
+        {
+          "role": "user",
+          "message": "Kal ka ek task bana do"
+        },
+        {
+          "role": "assistant",
+          "intent": "create_task",
+          "message": "Ji zaroor. Task ka title kya hona chahiye?"
+        },
+        {
+          "role": "user",
+          "message": "Dentist appointment"
+        },
+        {
+          "role": "assistant",
+          "intent": "create_task",
+          "message": "Kya time pe jana hai?"
+        },
+        {
+          "role": "user",
+          "message": "Subah 10 baje"
+        },
+        {
+          "role": "assistant",
+          "intent": "create_task",
+          "task": {
+            "title": "Dentist appointment",
+            "description": null,
+            "due_date": "2024-02-10T10:00:00Z",
+            "priority": "medium"
+          },
+          "message": "Perfect! Dentist appointment ka task kal subah 10 baje ke liye ban gaya."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Update Task - Hinglish",
+      "language": "mixed",
+      "turns": [
+        {
+          "role": "user",
+          "message": "Task 5 ka title change karna hai"
+        },
+        {
+          "role": "assistant",
+          "intent": "update_task",
+          "task_id": 5,
+          "message": "Naya title kya set karein?"
+        },
+        {
+          "role": "user",
+          "message": "Team standup meeting"
+        },
+        {
+          "role": "assistant",
+          "intent": "update_task",
+          "task_id": 5,
+          "updates": {
+            "title": "Team standup meeting"
+          },
+          "message": "Done! Task 5 ka title update ho gaya: Team standup meeting"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Delete Task - Pure Urdu",
+      "language": "ur-PK",
+      "turns": [
+        {
+          "role": "user",
+          "message": "Task 7 ko delete karo"
+        },
+        {
+          "role": "assistant",
+          "intent": "delete_task",
+          "task_id": 7,
+          "message": "Task 7 delete ho gaya."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Task Suggestions - English",
+      "language": "en-US",
+      "turns": [
+        {
+          "role": "user",
+          "message": "What should I do today?"
+        },
+        {
+          "role": "assistant",
+          "intent": "get_suggestions",
+          "suggestions": [
+            {
+              "title": "Review pending emails",
+              "reason": "You have 15 unread emails"
+            },
+            {
+              "title": "Prepare for tomorrow's meeting",
+              "reason": "Client meeting scheduled for tomorrow"
+            },
+            {
+              "title": "Complete weekly report",
+              "reason": "Due in 2 days"
+            }
+          ],
+          "message": "Based on your schedule, here's what I recommend:\n1. Review pending emails\n2. Prepare for tomorrow's meeting\n3. Complete weekly report"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Complex Task Creation - Hinglish",
+      "language": "mixed",
+      "turns": [
+        {
+          "role": "user",
+          "message": "Parso shaam ko office se nikalne se pehle monthly report complete karni hai. Bohot zaruri hai."
+        },
+        {
+          "role": "assistant",
+          "intent": "create_task",
+          "task": {
+            "title": "Monthly report complete karni hai",
+            "description": "Office se nikalne se pehle",
+            "due_date": "2024-02-11T17:00:00Z",
+            "priority": "high"
+          },
+          "message": "Ji, monthly report ka task parso shaam (5pm) ke liye ban gaya. Priority high set hai."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "title": "Filter Tasks by Priority - Urdu",
+      "language": "ur-PK",
+      "turns": [
+        {
+          "role": "user",
+          "message": "Mere high priority tasks dikhao"
+        },
+        {
+          "role": "assistant",
+          "intent": "list_tasks",
+          "filter": {
+            "priority": "high",
+            "status": "pending"
+          },
+          "tasks": [
+            {
+              "id": 1,
+              "title": "Client meeting",
+              "due_date": "2024-02-10T09:00:00Z",
+              "priority": "high"
+            },
+            {
+              "id": 8,
+              "title": "Monthly report",
+              "due_date": "2024-02-11T17:00:00Z",
+              "priority": "high"
+            }
+          ],
+          "message": "Aap ke 2 high priority pending tasks hain:\n1. Client meeting - Kal subah\n2. Monthly report - Parso shaam"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "title": "Error Handling - Invalid Task ID",
+      "language": "mixed",
+      "turns": [
+        {
+          "role": "user",
+          "message": "Task 999 complete karo"
+        },
+        {
+          "role": "assistant",
+          "intent": "complete_task",
+          "task_id": 999,
+          "error": "task_not_found",
+          "message": "Task 999 nahi mila. Kripya apne tasks check karein aur sahi task ID batain."
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "title": "Voice Command Style - Short Phrases",
+      "language": "ur-PK",
+      "turns": [
+        {
+          "role": "user",
+          "message": "Kal subah task"
+        },
+        {
+          "role": "assistant",
+          "intent": "create_task",
+          "message": "Task ka title kya hai?"
+        },
+        {
+          "role": "user",
+          "message": "Gym"
+        },
+        {
+          "role": "assistant",
+          "intent": "create_task",
+          "task": {
+            "title": "Gym",
+            "description": null,
+            "due_date": "2024-02-10T09:00:00Z",
+            "priority": "medium"
+          },
+          "message": "Gym ka task kal subah ke liye ban gaya!"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "title": "Task Stats Request - English",
+      "language": "en-US",
+      "turns": [
+        {
+          "role": "user",
+          "message": "How productive was I this week?"
+        },
+        {
+          "role": "assistant",
+          "intent": "get_suggestions",
+          "stats": {
+            "tasks_completed": 15,
+            "tasks_created": 20,
+            "completion_rate": 75,
+            "high_priority_completed": 8
+          },
+          "message": "Great week! You completed 15 out of 20 tasks (75% completion rate). You finished 8 high-priority tasks. Keep it up!"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "title": "Bulk Operations - Hinglish",
+      "language": "mixed",
+      "turns": [
+        {
+          "role": "user",
+          "message": "Aaj ke sab tasks complete mark karo"
+        },
+        {
+          "role": "assistant",
+          "intent": "complete_task",
+          "filter": {
+            "due_date": "today"
+          },
+          "tasks_updated": [1, 3, 5],
+          "message": "Done! Aaj ke 3 tasks complete mark kar diye:\n1. Morning standup\n2. Code review\n3. Email responses"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "title": "Reschedule Task - Pure Urdu",
+      "language": "ur-PK",
+      "turns": [
+        {
+          "role": "user",
+          "message": "Task 4 ko kal se parso kar do"
+        },
+        {
+          "role": "assistant",
+          "intent": "update_task",
+          "task_id": 4,
+          "updates": {
+            "due_date": "2024-02-11T09:00:00Z"
+          },
+          "message": "Task 4 ka due date kal se parso kar diya gaya."
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "title": "Natural Language Query - English",
+      "language": "en-US",
+      "turns": [
+        {
+          "role": "user",
+          "message": "What do I need to finish before the weekend?"
+        },
+        {
+          "role": "assistant",
+          "intent": "list_tasks",
+          "filter": {
+            "due_date_before": "2024-02-11T23:59:59Z",
+            "status": "pending"
+          },
+          "tasks": [
+            {
+              "id": 2,
+              "title": "Project proposal",
+              "due_date": "2024-02-10T17:00:00Z"
+            },
+            {
+              "id": 6,
+              "title": "Team presentation",
+              "due_date": "2024-02-11T15:00:00Z"
+            }
+          ],
+          "message": "You have 2 tasks to finish before the weekend:\n1. Project proposal - Tomorrow 5pm\n2. Team presentation - Friday 3pm"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "total_conversations": 15,
+    "languages": {
+      "ur-PK": 6,
+      "en-US": 5,
+      "mixed": 4
+    },
+    "intents_covered": [
+      "create_task",
+      "list_tasks",
+      "update_task",
+      "complete_task",
+      "delete_task",
+      "get_suggestions"
+    ],
+    "features_demonstrated": [
+      "Pure Urdu input",
+      "Pure English input",
+      "Hinglish (code-switching)",
+      "Relative date parsing",
+      "Multi-turn conversations",
+      "Context retention",
+      "Error handling",
+      "Bulk operations",
+      "Natural language queries",
+      "Task filtering",
+      "Priority extraction"
+    ]
+  }
+}

@@ -13,6 +13,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* Add Urdu font for Agent Intelligence features */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="min-h-screen bg-gray-50 text-gray-900 antialiased">
         {children}
       </body>

@@ -10,15 +10,9 @@ branch: 1-rest-api-spec
 user: safaaslam96
 command: /sp.plan
 labels: ["plan", "5-phases", "hackathon", "full-stack", "kubernetes", "ai-chatbot"]
-links:
-  spec: specs/overview.md
-  ticket: null
-  adr: null
-  pr: null
-files:
-  - specs_history/phase2_full_plan_v1.plan.md
-tests:
-  - none
+links: {spec: "specs/overview.md", ticket: null, adr: null, pr: null}
+files: ["specs_history/phase2_full_plan_v1.plan.md"]
+tests: ["none"]
 ---
 
 ## Prompt

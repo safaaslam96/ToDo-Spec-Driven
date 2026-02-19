@@ -10,60 +10,9 @@ branch: 1-rest-api-spec
 user: safaaslam96
 command: /sp.setup monorepo
 labels: ["monorepo", "scaffolding", "phase2", "setup"]
-links:
-  spec: specs/overview.md
-  ticket: null
-  adr: null
-  pr: null
-files:
-  - backend/pyproject.toml
-  - backend/.env.example
-  - backend/Dockerfile
-  - backend/CLAUDE.md
-  - backend/app/__init__.py
-  - backend/app/config.py
-  - backend/app/main.py
-  - backend/app/database/__init__.py
-  - backend/app/database/connection.py
-  - backend/app/models/__init__.py
-  - backend/app/models/task.py
-  - backend/app/auth/__init__.py
-  - backend/app/auth/jwt.py
-  - backend/app/api/__init__.py
-  - backend/app/api/routes/__init__.py
-  - backend/app/api/routes/health.py
-  - backend/app/api/routes/tasks.py
-  - backend/tests/__init__.py
-  - frontend/package.json
-  - frontend/tsconfig.json
-  - frontend/next.config.ts
-  - frontend/postcss.config.mjs
-  - frontend/.env.example
-  - frontend/Dockerfile
-  - frontend/CLAUDE.md
-  - frontend/types/task.ts
-  - frontend/lib/api-client.ts
-  - frontend/app/globals.css
-  - frontend/app/layout.tsx
-  - frontend/app/page.tsx
-  - frontend/app/auth/page.tsx
-  - frontend/app/dashboard/page.tsx
-  - frontend/components/tasks/task-item.tsx
-  - frontend/components/tasks/task-form.tsx
-  - frontend/components/tasks/task-list.tsx
-  - specs/overview.md
-  - specs/architecture.md
-  - specs/features/authentication.md
-  - specs/database/schema.md
-  - specs/ui/pages.md
-  - specs/ui/components.md
-  - .specify/config.yaml
-  - docker-compose.yml
-  - CLAUDE.md (updated)
-  - .env (updated)
-  - .gitignore (updated)
-tests:
-  - none (scaffolding only)
+links: {spec: "specs/overview.md", ticket: null, adr: null, pr: null}
+files: ["backend/pyproject.toml", "backend/.env.example", "backend/Dockerfile", "backend/CLAUDE.md", "backend/app/__init__.py", "backend/app/config.py", "backend/app/main.py", "backend/app/database/__init__.py", "backend/app/database/connection.py", "backend/app/models/__init__.py", "backend/app/models/task.py", "backend/app/auth/__init__.py", "backend/app/auth/jwt.py", "backend/app/api/__init__.py", "backend/app/api/routes/__init__.py", "backend/app/api/routes/health.py", "backend/app/api/routes/tasks.py", "backend/tests/__init__.py", "frontend/package.json", "frontend/tsconfig.json", "frontend/next.config.ts", "frontend/postcss.config.mjs", "frontend/.env.example", "frontend/Dockerfile", "frontend/CLAUDE.md", "frontend/types/task.ts", "frontend/lib/api-client.ts", "frontend/app/globals.css", "frontend/app/layout.tsx", "frontend/app/page.tsx", "frontend/app/auth/page.tsx", "frontend/app/dashboard/page.tsx", "frontend/components/tasks/task-item.tsx", "frontend/components/tasks/task-form.tsx", "frontend/components/tasks/task-list.tsx", "specs/overview.md", "specs/architecture.md", "specs/features/authentication.md", "specs/database/schema.md", "specs/ui/pages.md", "specs/ui/components.md", ".specify/config.yaml", "docker-compose.yml", "CLAUDE.md (updated)", ".env (updated)", ".gitignore (updated)"]
+tests: ["none (scaffolding only)"]
 ---
 
 ## Prompt

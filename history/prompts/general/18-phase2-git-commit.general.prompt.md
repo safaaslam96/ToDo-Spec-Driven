@@ -10,33 +10,9 @@ branch: 1-rest-api-spec
 user: Safaa Aslam
 command: /sp.git.commit_pr
 labels: ["git", "commit", "pr", "phase2", "deployment"]
-links:
-  spec: null
-  ticket: null
-  adr: null
-  pr: https://github.com/safaaslam96/ToDo-Spec-Driven/compare/1-rest-api-spec
-files:
-  - .gitignore
-  - CLAUDE.md
-  - README.md
-  - specs/main/plan.md
-  - .env.example
-  - AGENTS.md
-  - AGENTS_SYSTEM_COMPLETE.md
-  - INSTALLATION.md
-  - agents/ (14 files)
-  - backend/ (18 files)
-  - frontend/ (16 files)
-  - specs/ (12 files)
-  - history/prompts/ (17 PHRs)
-  - docker-compose.yml
-  - setup.sh
-  - setup.ps1
-  - verify-tools.sh
-tests:
-  - Backend: All 6 auth tests passing
-  - Frontend: Build successful (0 errors)
-  - Integration: API endpoints verified
+links: {spec: null, ticket: null, adr: null, pr: "https://github.com/safaaslam96/ToDo-Spec-Driven/compare/1-rest-api-spec"}
+files: [".gitignore", "CLAUDE.md", "README.md", "specs/main/plan.md", ".env.example", "AGENTS.md", "AGENTS_SYSTEM_COMPLETE.md", "INSTALLATION.md", "agents/ (14 files)", "backend/ (18 files)", "frontend/ (16 files)", "specs/ (12 files)", "history/prompts/ (17 PHRs)", "docker-compose.yml", "setup.sh", "setup.ps1", "verify-tools.sh"]
+tests: ["Backend: All 6 auth tests passing", "Frontend: Build successful (0 errors)", "Integration: API endpoints verified"]
 ---
 
 ## Prompt

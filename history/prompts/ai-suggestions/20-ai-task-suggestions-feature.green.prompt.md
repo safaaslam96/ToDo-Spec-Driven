@@ -10,24 +10,9 @@ branch: main
 user: safaaslam96
 command: /sp.implement
 labels: ["ai", "openai", "suggestions", "rate-limiting", "premium-ui", "api"]
-links:
-  spec: null
-  ticket: null
-  adr: null
-  pr: null
-files:
-  - backend/app/services/ai_suggestions.py (created)
-  - backend/app/api/routes/suggestions.py (created)
-  - backend/app/config.py (modified)
-  - backend/app/main.py (modified)
-  - backend/requirements.txt (modified)
-  - backend/.env.example (modified)
-  - frontend/components/tasks/ai-suggestions.tsx (created)
-tests:
-  - Manual testing: OpenAI API integration
-  - Manual testing: Rate limiting (30s window)
-  - Manual testing: Error handling (no API key, API failure)
-  - Manual testing: Frontend UI and animations
+links: {spec: null, ticket: null, adr: null, pr: null}
+files: ["backend/app/services/ai_suggestions.py (created)", "backend/app/api/routes/suggestions.py (created)", "backend/app/config.py (modified)", "backend/app/main.py (modified)", "backend/requirements.txt (modified)", "backend/.env.example (modified)", "frontend/components/tasks/ai-suggestions.tsx (created)"]
+tests: ["Manual testing: OpenAI API integration", "Manual testing: Rate limiting (30s window)", "Manual testing: Error handling (no API key, API failure)", "Manual testing: Frontend UI and animations"]
 ---
 
 ## Prompt
