@@ -123,9 +123,9 @@ export function ChatInterface({ userId, onTaskCreated }: ChatInterfaceProps) {
                   ? 'bg-blue-600 text-white'
                   : 'bg-slate-700 text-white'
               }`}
+              dir="auto"
               style={{
                 fontFamily: "'Noto Nastaliq Urdu', 'Segoe UI', sans-serif",
-                direction: 'auto' // Auto RTL/LTR
               }}
             >
               <p className="whitespace-pre-wrap">{msg.content}</p>
